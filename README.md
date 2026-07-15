@@ -1,5 +1,7 @@
 # 健康管家
 
+[![CI](https://github.com/ty0826/health-app/actions/workflows/ci.yml/badge.svg)](https://github.com/ty0826/health-app/actions/workflows/ci.yml)
+
 一个基于 Taro、React、Spring Boot 和 MySQL 的个人健康管理应用，包含每日健康记录、趋势统计、提醒设置、数据导出和 AI 健康助手等功能。
 
 ## 项目结构
