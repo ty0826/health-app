@@ -1,0 +1,12 @@
+node_modules
+dist
+.taro
+.swc
+.rn_temp
+.expo
+.git
+.idea
+.vscode
+*.log
+.env
+.env.*
