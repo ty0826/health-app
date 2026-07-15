@@ -12,12 +12,14 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -71,5 +73,59 @@ class UserServiceTest {
         Map<String, Object> result = userService.login(loginRequest);
 
         assertEquals("jwt-token", result.get("token"));
+    }
+
+    @Test
+    void loginUsesTheSameAuthenticationErrorForUnknownUsers() throws Exception {
+        when(userMapper.selectOne(any())).thenReturn(null);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.login(loginRequest("missing", "password")));
+
+        assertBusinessError(exception, 401, "用户名或密码错误");
+    }
+
+    @Test
+    void loginUsesTheSameAuthenticationErrorForWrongPasswords() throws Exception {
+        User storedUser = new User();
+        storedUser.setId(7L);
+        storedUser.setUsername("alice");
+        storedUser.setPassword(new BCryptPasswordEncoder().encode("correct-password"));
+        when(userMapper.selectOne(any())).thenReturn(storedUser);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.login(loginRequest("alice", "wrong-password")));
+
+        assertBusinessError(exception, 401, "用户名或密码错误");
+    }
+
+    @Test
+    void registerReportsDuplicateUsernamesAsConflict() throws Exception {
+        User existing = new User();
+        existing.setUsername("alice");
+        when(userMapper.selectOne(any())).thenReturn(existing);
+
+        RegisterRequest request = new RegisterRequest();
+        request.setUsername("alice");
+        request.setPassword("StrongPassword123");
+        request.setNickname("Alice");
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.register(request));
+
+        assertBusinessError(exception, 409, "用户名已存在");
+    }
+
+    private LoginRequest loginRequest(String username, String password) {
+        LoginRequest request = new LoginRequest();
+        request.setUsername(username);
+        request.setPassword(password);
+        return request;
+    }
+
+    private void assertBusinessError(RuntimeException exception, int code, String message) throws Exception {
+        assertEquals("BusinessException", exception.getClass().getSimpleName());
+        assertEquals(code, exception.getClass().getMethod("getCode").invoke(exception));
+        assertEquals(message, exception.getMessage());
     }
 }

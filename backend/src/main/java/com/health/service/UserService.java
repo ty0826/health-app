@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.health.dto.LoginRequest;
 import com.health.dto.RegisterRequest;
 import com.health.entity.User;
+import com.health.exception.BusinessException;
 import com.health.mapper.UserMapper;
 import com.health.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,11 @@ public class UserService {
                 new LambdaQueryWrapper<User>().eq(User::getUsername, request.getUsername()));
 
         if (user == null) {
-            throw new RuntimeException("用户不存在");
+            throw new BusinessException(401, "用户名或密码错误");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("密码错误");
+            throw new BusinessException(401, "用户名或密码错误");
         }
 
         String token = jwtUtil.generateToken(user.getId(), user.getUsername());
@@ -56,7 +57,7 @@ public class UserService {
         User existing = userMapper.selectOne(
                 new LambdaQueryWrapper<User>().eq(User::getUsername, request.getUsername()));
         if (existing != null) {
-            throw new RuntimeException("用户名已存在");
+            throw new BusinessException(409, "用户名已存在");
         }
 
         User user = new User();
