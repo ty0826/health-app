@@ -5,6 +5,7 @@ import com.health.entity.HealthData;
 import com.health.service.HealthDataService;
 import com.health.vo.Result;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class HealthDataController {
     private HealthDataService healthDataService;
 
     @PostMapping("/record")
-    public Result<Void> addRecord(HttpServletRequest request, @RequestBody HealthDataRequest healthDataRequest) {
+    public Result<Void> addRecord(HttpServletRequest request, @Valid @RequestBody HealthDataRequest healthDataRequest) {
         Long userId = (Long) request.getAttribute("userId");
         healthDataService.addRecord(userId, healthDataRequest);
         return Result.success();

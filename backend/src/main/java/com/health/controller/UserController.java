@@ -21,22 +21,14 @@ public class UserController {
 
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@Valid @RequestBody LoginRequest request) {
-        try {
-            Map<String, Object> data = userService.login(request);
-            return Result.success(data);
-        } catch (RuntimeException e) {
-            return Result.error(e.getMessage());
-        }
+        Map<String, Object> data = userService.login(request);
+        return Result.success(data);
     }
 
     @PostMapping("/register")
     public Result<Void> register(@Valid @RequestBody RegisterRequest request) {
-        try {
-            userService.register(request);
-            return Result.success();
-        } catch (RuntimeException e) {
-            return Result.error(e.getMessage());
-        }
+        userService.register(request);
+        return Result.success();
     }
 
     @GetMapping("/info")
