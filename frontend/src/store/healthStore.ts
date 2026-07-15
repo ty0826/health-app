@@ -41,8 +41,7 @@ interface HealthState {
   fetchRecords: (page?: number, size?: number) => Promise<void>
   fetchTodayRecord: () => Promise<void>
   fetchStats: (days?: number) => Promise<void>
-  addRecord: (data: Partial<HealthRecord>) => Promise<void>
-  updateRecord: (id: number, data: Partial<HealthRecord>) => Promise<void>
+  saveRecord: (data: Partial<HealthRecord>) => Promise<void>
 }
 
 export const useHealthStore = create<HealthState>((set) => ({
@@ -75,11 +74,7 @@ export const useHealthStore = create<HealthState>((set) => ({
     set({ stats: data })
   },
 
-  addRecord: async (data) => {
-    await post('/health/record', data)
-  },
-
-  updateRecord: async (_id, data) => {
+  saveRecord: async (data) => {
     await post('/health/record', data)
   },
 }))

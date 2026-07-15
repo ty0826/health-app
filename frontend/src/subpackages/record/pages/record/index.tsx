@@ -83,7 +83,7 @@ export default function Record() {
   const [mood, setMood] = useState(3)
   const [note, setNote] = useState('')
   const [loading, setLoading] = useState(false)
-  const { addRecord } = useHealthStore()
+  const { saveRecord } = useHealthStore()
 
   const handleInputChange = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }))
@@ -92,7 +92,7 @@ export default function Record() {
   const handleSubmit = async () => {
     setLoading(true)
     try {
-      await addRecord({
+      await saveRecord({
         ...formData,
         mood,
         note,

@@ -1,11 +1,13 @@
 package com.health.service;
 
 import com.health.entity.HealthData;
+import com.health.dto.HealthDataRequest;
 import com.health.mapper.HealthDataMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.ArgumentCaptor;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -21,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class HealthDataServiceTest {
@@ -90,6 +93,44 @@ class HealthDataServiceTest {
     void exportRejectsUnsupportedFormatAndInvalidDays() {
         assertThrows(IllegalArgumentException.class, () -> healthDataService.exportData(1L, 0, "csv"));
         assertThrows(IllegalArgumentException.class, () -> healthDataService.exportData(1L, 30, "xml"));
+    }
+
+    @Test
+    void newDailyRecordsAreAlwaysAssignedToTheAuthenticatedUser() {
+        HealthDataRequest request = new HealthDataRequest();
+        request.setRecordDate("2026-07-15");
+        request.setSteps(8000);
+        when(healthDataMapper.selectByUserAndDate(7L, LocalDate.of(2026, 7, 15)))
+                .thenReturn(null);
+
+        healthDataService.addRecord(7L, request);
+
+        ArgumentCaptor<HealthData> captor = ArgumentCaptor.forClass(HealthData.class);
+        verify(healthDataMapper).insert(captor.capture());
+        assertEquals(Long.valueOf(7L), captor.getValue().getUserId());
+        assertEquals(LocalDate.of(2026, 7, 15), captor.getValue().getRecordDate());
+        assertEquals(Integer.valueOf(8000), captor.getValue().getSteps());
+    }
+
+    @Test
+    void existingDailyRecordsAreUpdatedWithoutChangingUserOwnership() {
+        HealthData existing = record(LocalDate.of(2026, 7, 15));
+        existing.setId(99L);
+        existing.setUserId(7L);
+        when(healthDataMapper.selectByUserAndDate(7L, LocalDate.of(2026, 7, 15)))
+                .thenReturn(existing);
+
+        HealthDataRequest request = new HealthDataRequest();
+        request.setRecordDate("2026-07-15");
+        request.setSteps(9000);
+
+        healthDataService.addRecord(7L, request);
+
+        ArgumentCaptor<HealthData> captor = ArgumentCaptor.forClass(HealthData.class);
+        verify(healthDataMapper).updateById(captor.capture());
+        assertEquals(Long.valueOf(99L), captor.getValue().getId());
+        assertEquals(Long.valueOf(7L), captor.getValue().getUserId());
+        assertEquals(Integer.valueOf(9000), captor.getValue().getSteps());
     }
 
     private HealthData record(LocalDate date) {
