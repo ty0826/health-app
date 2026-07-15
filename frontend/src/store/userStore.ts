@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import Taro from '@tarojs/taro'
 import { post, get } from '../utils/request'
-import { encryptPassword } from '../utils/encrypt'
 
 interface UserInfo {
   id: number
@@ -33,7 +32,7 @@ export const useUserStore = create<UserState>((set, getState) => ({
     Taro.showLoading({ title: '登录中...', mask: true })
     const data = await post<{ token: string; userInfo: UserInfo }>('/user/login', {
       username,
-      password: encryptPassword(password),
+      password,
     })
     Taro.setStorageSync('token', data.token)
     set({ token: data.token, userInfo: data.userInfo})
@@ -42,10 +41,7 @@ export const useUserStore = create<UserState>((set, getState) => ({
   },
 
   register: async (data) => {
-    await post('/user/register', {
-      ...data,
-      password: encryptPassword(data.password),
-    })
+    await post('/user/register', data)
     Taro.showToast({ title: '注册成功，请登录', icon: 'success' })
   },
 
