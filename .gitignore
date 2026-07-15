@@ -29,6 +29,7 @@ backend/target/
 logs/
 
 # Temporary files
+.worktrees/
 *.tmp
 *.swp
 *.swo
