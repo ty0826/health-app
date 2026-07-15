@@ -1,0 +1,108 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+}
+
+.header {
+  text-align: center;
+  padding: $spacing-lg 0;
+}
+
+.headerIcon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: $spacing-sm;
+}
+
+.headerTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: $text-color;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.headerDesc {
+  font-size: 24px;
+  color: $text-secondary;
+  display: block;
+}
+
+.faqList {
+  margin-bottom: $spacing-md;
+}
+
+.faqItem {
+  background: $bg-white;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-sm;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.faqExpanded {
+  border-left: 4px solid $primary-color;
+}
+
+.faqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm $spacing-md;
+}
+
+.faqQuestion {
+  font-size: 28px;
+  color: $text-color;
+  font-weight: 600;
+  flex: 1;
+  margin-right: $spacing-sm;
+}
+
+.faqArrow {
+  font-size: 36px;
+  color: $primary-color;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.faqBody {
+  padding: 0 $spacing-md $spacing-md;
+}
+
+.faqAnswer {
+  font-size: 26px;
+  color: $text-secondary;
+  line-height: 1.8;
+}
+
+.contactCard {
+  background: $bg-gradient;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  text-align: center;
+}
+
+.contactTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: $text-white;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.contactDesc {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  margin-bottom: $spacing-sm;
+}
+
+.contactEmail {
+  font-size: 26px;
+  color: $text-white;
+  display: block;
+}

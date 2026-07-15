@@ -1,0 +1,78 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+}
+
+.section {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: 0 $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.sectionTitle {
+  padding: $spacing-md 0 $spacing-xs;
+}
+
+.sectionTitleText {
+  font-size: 26px;
+  color: $text-secondary;
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  font-size: 28px;
+  color: $text-color;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  text-align: right;
+  font-size: 28px;
+  color: $text-color;
+}
+
+.pickerValue {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: $text-color;
+}
+
+.arrow {
+  font-size: 32px;
+  color: $text-light;
+  margin-left: $spacing-xs;
+}
+
+.saveBtn {
+  margin-top: $spacing-lg;
+  background: $bg-gradient;
+  border-radius: $border-radius;
+  padding: $spacing-sm 0;
+  text-align: center;
+}
+
+.saveBtnText {
+  color: $text-white;
+  font-size: 30px;
+  font-weight: 600;
+}

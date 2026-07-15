@@ -1,0 +1,114 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+}
+
+.tipCard {
+  display: flex;
+  align-items: flex-start;
+  background: #EEF2FF;
+  border-radius: $border-radius;
+  padding: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.tipIcon {
+  font-size: 32px;
+  margin-right: $spacing-xs;
+  flex-shrink: 0;
+}
+
+.tipText {
+  font-size: 24px;
+  color: $primary-color;
+  line-height: 1.6;
+}
+
+.section {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: 0 $spacing-md;
+  box-shadow: $shadow-sm;
+  margin-bottom: $spacing-md;
+}
+
+.reminderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.reminderLeft {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.reminderIcon {
+  font-size: 36px;
+  margin-right: $spacing-sm;
+}
+
+.reminderInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.reminderLabel {
+  font-size: 28px;
+  color: $text-color;
+  font-weight: 600;
+}
+
+.reminderDesc {
+  font-size: 22px;
+  color: $text-light;
+  margin-top: 4px;
+}
+
+.reminderRight {
+  display: flex;
+  align-items: center;
+}
+
+.reminderTime {
+  font-size: 26px;
+  color: $text-light;
+  margin-right: $spacing-sm;
+  padding: 4px 12px;
+  border-radius: $border-radius-sm;
+  background: $bg-color;
+}
+
+.timeActive {
+  color: $primary-color;
+  background: #EEF2FF;
+}
+
+.noteSection {
+  padding: $spacing-md;
+}
+
+.noteTitle {
+  font-size: 26px;
+  color: $text-secondary;
+  font-weight: 600;
+  margin-bottom: $spacing-xs;
+  display: block;
+}
+
+.noteText {
+  font-size: 22px;
+  color: $text-light;
+  line-height: 2;
+  display: block;
+}

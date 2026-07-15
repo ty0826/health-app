@@ -1,0 +1,203 @@
+@import '../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+  padding-bottom: 120px;
+}
+
+.tabs {
+  display: flex;
+  background: $bg-white;
+  border-radius: $border-radius-full;
+  padding: 6px;
+  margin-bottom: $spacing-sm;
+  box-shadow: $shadow-sm;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 14px 0;
+  border-radius: $border-radius-full;
+  transition: all 0.3s ease;
+}
+
+.tabActive {
+  background: $primary-color;
+
+  .tabText {
+    color: $text-white;
+  }
+}
+
+.tabText {
+  font-size: 26px;
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+.metricTabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.metricTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: $border-radius;
+  background: $bg-white;
+  border: 2px solid $border-color;
+  transition: all 0.3s ease;
+  width: 23%;
+}
+
+.metricTabActive {
+  border-color: transparent;
+  box-shadow: $shadow-md;
+}
+
+.metricIcon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.metricLabel {
+  font-size: 22px;
+  color: $text-secondary;
+}
+
+.statsRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.statCard {
+  width: 31%;
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-sm;
+  text-align: center;
+  box-shadow: $shadow-sm;
+}
+
+.statLabel {
+  font-size: 22px;
+  color: $text-light;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 40px;
+  font-weight: 800;
+  display: block;
+}
+
+.statUnit {
+  font-size: 20px;
+  color: $text-light;
+  display: block;
+  margin-top: 4px;
+}
+
+.chartCard {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.chartTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: $text-color;
+  margin-bottom: $spacing-md;
+  display: block;
+}
+
+.chart {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.barContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  min-height: 260px;
+  padding-top: 40px;
+}
+
+.barWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12%;
+}
+
+.barValue {
+  font-size: 18px;
+  color: $text-secondary;
+  margin-bottom: 8px;
+}
+
+.bar {
+  width: 36px;
+  min-height: 8px;
+  border-radius: 8px 8px 4px 4px;
+  transition: height 0.5s ease;
+}
+
+.barLabel {
+  font-size: 18px;
+  color: $text-light;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.insightCard {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.insightTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: $text-color;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.insightList {
+  display: flex;
+  flex-direction: column;
+}
+
+.insightItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-xs;
+}
+
+.insightDot {
+  width: 12px;
+  height: 12px;
+  border-radius: $border-radius-full;
+  margin-right: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.insightText {
+  font-size: 24px;
+  color: $text-secondary;
+  line-height: 1.6;
+}

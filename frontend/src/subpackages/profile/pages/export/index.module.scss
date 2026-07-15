@@ -1,0 +1,131 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+}
+
+.header {
+  text-align: center;
+  padding: $spacing-lg 0;
+}
+
+.headerIcon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: $spacing-sm;
+}
+
+.headerTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: $text-color;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.headerDesc {
+  font-size: 24px;
+  color: $text-secondary;
+  display: block;
+}
+
+.section {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: 0 $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  font-size: 28px;
+  color: $text-color;
+}
+
+.pickerValue {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: $primary-color;
+}
+
+.arrow {
+  font-size: 32px;
+  color: $text-light;
+  margin-left: $spacing-xs;
+}
+
+.infoCard {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.infoTitle {
+  font-size: 26px;
+  color: $text-secondary;
+  font-weight: 600;
+  margin-bottom: $spacing-xs;
+  display: block;
+}
+
+.infoText {
+  font-size: 22px;
+  color: $text-light;
+  line-height: 2;
+  display: block;
+}
+
+.exportBtn {
+  background: $bg-gradient;
+  border-radius: $border-radius;
+  padding: $spacing-sm 0;
+  text-align: center;
+  margin-bottom: $spacing-md;
+}
+
+.btnDisabled {
+  opacity: 0.6;
+}
+
+.exportBtnText {
+  color: $text-white;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.resultCard {
+  background: #F0FDF4;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  border: 1px solid #BBF7D0;
+}
+
+.resultTitle {
+  font-size: 28px;
+  color: $success-color;
+  font-weight: 600;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.resultDesc {
+  font-size: 24px;
+  color: $text-secondary;
+}

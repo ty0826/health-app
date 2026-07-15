@@ -1,0 +1,22 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "health-manager",
+  "description": "AI + 数据可视化 + 个人健康管理系统",
+  "appid": "wxc2c365537f482a36",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": true,
+    "minified": true,
+    "bundle": true,
+    "autoAudits": false,
+    "coverView": true,
+    "lazyCodeLoading": "requiredComponents"
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.3.5",
+  "condition": {}
+}
+

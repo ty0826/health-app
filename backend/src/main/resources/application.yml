@@ -1,0 +1,39 @@
+server:
+  port: 9999
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/health_manager?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:LocalDevelopmentOnlyJwtSecretKeyChangeBeforeDeployment2026}
+  expiration: ${JWT_EXPIRATION:604800000} # 7 days
+
+# AI Configuration (OpenAI Compatible)
+ai:
+  api-url: ${AI_API_URL:https://api.openai.com/v1/chat/completions}
+  api-key: ${AI_API_KEY:}
+  model: ${AI_MODEL:gpt-3.5-turbo}
+
+logging:
+  level:
+    com.health: debug

@@ -1,0 +1,182 @@
+@import '../../../../styles/variables.scss';
+
+.container {
+  min-height: 100vh;
+  background: $bg-color;
+  padding: $spacing-md;
+  padding-bottom: 60px;
+}
+
+.header {
+  text-align: center;
+  padding: $spacing-lg 0;
+}
+
+.logoWrap {
+  width: 120px;
+  height: 120px;
+  border-radius: $border-radius-lg;
+  background: $bg-gradient;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-sm;
+  box-shadow: $shadow-md;
+}
+
+.logoIcon {
+  font-size: 64px;
+}
+
+.appName {
+  font-size: 40px;
+  font-weight: 800;
+  color: $text-color;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.appSlogan {
+  font-size: 24px;
+  color: $text-secondary;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.version {
+  font-size: 22px;
+  color: $text-light;
+  display: block;
+  padding: 4px 16px;
+  background: $bg-color;
+  border-radius: $border-radius-full;
+  display: inline-block;
+}
+
+.section {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.sectionTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: $text-color;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.featureGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.featureItem {
+  width: 48%;
+  background: $bg-color;
+  border-radius: $border-radius;
+  padding: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.featureIcon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.featureTitle {
+  font-size: 26px;
+  font-weight: 600;
+  color: $text-color;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.featureDesc {
+  font-size: 20px;
+  color: $text-light;
+  display: block;
+}
+
+.techList {
+  border-radius: $border-radius-sm;
+  overflow: hidden;
+}
+
+.techItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.techRole {
+  font-size: 26px;
+  color: $text-secondary;
+}
+
+.techName {
+  font-size: 26px;
+  color: $primary-color;
+  font-weight: 600;
+}
+
+.contactSection {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.contactTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: $text-color;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-xs 0;
+}
+
+.contactIcon {
+  font-size: 28px;
+  margin-right: $spacing-sm;
+}
+
+.contactText {
+  font-size: 26px;
+  color: $text-secondary;
+}
+
+.footer {
+  text-align: center;
+  padding: $spacing-md 0;
+}
+
+.footerText {
+  font-size: 22px;
+  color: $text-light;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footerLink {
+  font-size: 22px;
+  color: $primary-color;
+}

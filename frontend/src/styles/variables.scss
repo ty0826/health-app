@@ -1,0 +1,41 @@
+// 主题色
+$primary-color: #4F46E5;
+$primary-light: #818CF8;
+$primary-dark: #3730A3;
+
+// 功能色
+$success-color: #10B981;
+$warning-color: #F59E0B;
+$danger-color: #EF4444;
+$info-color: #3B82F6;
+
+// 背景色
+$bg-color: #F3F4F6;
+$bg-white: #FFFFFF;
+$bg-card: #FFFFFF;
+$bg-gradient: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+
+// 文字色
+$text-color: #1F2937;
+$text-secondary: #6B7280;
+$text-light: #9CA3AF;
+$text-white: #FFFFFF;
+
+// 边框
+$border-color: #E5E7EB;
+$border-radius: 16px;
+$border-radius-sm: 8px;
+$border-radius-lg: 24px;
+$border-radius-full: 999px;
+
+// 阴影
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+// 间距
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 32px;
+$spacing-xl: 48px;
