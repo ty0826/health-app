@@ -1,12 +1,9 @@
 server:
-  port: 9999
+  port: ${SERVER_PORT:9999}
 
 spring:
-  datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/health_manager?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    default: local
   flyway:
     enabled: true
     baseline-on-migrate: true
@@ -28,17 +25,6 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 
-# JWT Configuration
-jwt:
-  secret: ${JWT_SECRET:LocalDevelopmentOnlyJwtSecretKeyChangeBeforeDeployment2026}
-  expiration: ${JWT_EXPIRATION:604800000} # 7 days
-
-# AI Configuration (OpenAI Compatible)
-ai:
-  api-url: ${AI_API_URL:https://api.openai.com/v1/chat/completions}
-  api-key: ${AI_API_KEY:}
-  model: ${AI_MODEL:gpt-3.5-turbo}
-
 logging:
   level:
-    com.health: debug
+    com.health: ${APP_LOG_LEVEL:info}

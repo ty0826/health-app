@@ -10,6 +10,7 @@ Thumbs.db
 !.env.example
 application-local.yml
 application-*.local.yml
+!backend/src/main/resources/application-local.yml
 
 # Frontend dependencies and build output
 frontend/node_modules/

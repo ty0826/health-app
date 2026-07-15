@@ -19,3 +19,12 @@ mybatis-plus:
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
+
+jwt:
+  secret: TestOnlyJwtSecretKeyWithAtLeastThirtyTwoBytes2026
+  expiration: 3600000
+
+ai:
+  api-url: http://localhost/unused
+  api-key: test-only
+  model: test-model
