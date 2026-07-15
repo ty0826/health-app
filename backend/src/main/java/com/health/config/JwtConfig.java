@@ -19,7 +19,13 @@ public class JwtConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtInterceptor())
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/user/login", "/api/user/register", "/api/system/**");
+                .excludePathPatterns(
+                        "/api/user/login",
+                        "/api/user/register",
+                        "/api/system/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html");
     }
 
     class JwtInterceptor implements HandlerInterceptor {

@@ -51,6 +51,13 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
+        <!-- OpenAPI documentation for Spring Boot 2.7 -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
