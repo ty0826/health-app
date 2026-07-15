@@ -25,12 +25,14 @@ export default defineConfig({
   },
   framework: 'react',
   compiler: {
-    type: 'webpack5',
+    type: 'vite',
     prebundle: { enable: false },
   },
   sass: {
     resource: [
-      'src/styles/variables.scss',
+      process.env.TARO_ENV === 'rn'
+        ? 'src/styles/variables.rn.scss'
+        : 'src/styles/variables.scss',
       // Removed global NutUI style injection to prevent massive duplication
     ],
   },
@@ -51,10 +53,6 @@ export default defineConfig({
           generateScopedName: '[name]__[local]___[hash:base64:5]',
         },
       },
-    },
-    // 启用代码压缩和优化
-    webpackChain() {
-      // 启用代码压缩已在 Taro 默认配置中处理
     },
   },
   h5: {

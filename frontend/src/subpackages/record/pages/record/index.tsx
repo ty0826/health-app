@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { View, Text, Input, Textarea, Picker } from '@tarojs/components'
+import { View, Text, Input, Textarea } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useHealthStore } from '../../../../store/healthStore'
 import styles from './index.module.scss'

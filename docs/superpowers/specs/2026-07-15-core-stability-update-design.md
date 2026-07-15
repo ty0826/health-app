@@ -15,7 +15,7 @@
 - 为分页、统计周期和导出格式增加参数边界校验。
 - 为同一用户同一天的健康数据增加数据库唯一约束。
 - 增加后端核心 Service 单元测试。
-- 明确前端要求 Node.js 20 或更高版本。
+- 明确前端要求 Node.js 22 或更高版本，并使用 pnpm。
 
 本次不包含：
 
@@ -86,7 +86,7 @@ Controller 接口保持不变，Service 对外部参数执行边界校验：
 
 ### 前端运行环境
 
-`package.json` 增加 Node.js 版本约束，要求 Node 20 或更高版本。运行文档同步更新，避免 Node 14 对 `??=` 语法不支持造成构建过程假成功。
+`package.json` 增加 Node.js 版本约束，要求 Node 22 或更高版本，并通过 Corepack 固定 pnpm。运行文档同步更新，避免旧 Node 对现代语法不支持造成构建过程假成功。
 
 ## 数据流
 
@@ -140,5 +140,5 @@ Mapper 使用 Mockito 隔离数据库，使单元测试可以在没有 MySQL 的
 - 前端不再引用 `/health/record/{id}`。
 - schema 中存在 `(user_id, record_date)` 唯一索引。
 - `application.yml` 不再固定写入实际数据库密码、JWT 密钥和 AI Key。
-- Node 20+ 环境下微信小程序构建成功。
+- Node 22 + pnpm 环境下微信小程序构建成功。
 

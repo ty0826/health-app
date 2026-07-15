@@ -18,9 +18,6 @@ frontend/.taro/
 frontend/.swc/
 frontend/.rn_temp/
 frontend/.expo/
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
 frontend/pnpm-debug.log*
 
 # Backend build output and logs
@@ -30,6 +27,7 @@ logs/
 
 # Temporary files
 .worktrees/
+.tools/
 *.tmp
 *.swp
 *.swo

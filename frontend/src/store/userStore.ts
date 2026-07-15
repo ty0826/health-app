@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import Taro from '@tarojs/taro'
-import { post, get, put } from '../utils/request'
+import { post, get } from '../utils/request'
 import { encryptPassword } from '../utils/encrypt'
 
 interface UserInfo {

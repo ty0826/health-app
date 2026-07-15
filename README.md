@@ -43,12 +43,13 @@ mvn spring-boot:run
 
 ## 前端运行
 
-当前前端迁移目标为 Node.js 20+、Taro Vite 构建微信小程序/H5，并通过 Taro React Native + Expo 支持 Android/iOS。现有运行说明见 `frontend/运行说明.md`。
+前端使用 Node.js 22、pnpm 11 和 Taro 4.2。微信小程序/H5 由 Vite 构建，Android/iOS 使用 Taro React Native + Expo。完整说明见 `frontend/运行说明.md`。
 
 ```bash
 cd frontend
-npm install
-npm run dev:weapp
+corepack enable
+pnpm install
+pnpm dev:weapp
 ```
 
 ## 安全说明

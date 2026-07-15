@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { View, Text, Input } from '@tarojs/components'
-import { Button } from '@nutui/nutui-react-taro'
+import { View, Text, Input, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useUserStore } from '../../../../store/userStore'
 import styles from './index.module.scss'
