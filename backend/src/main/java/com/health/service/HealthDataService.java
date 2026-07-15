@@ -44,6 +44,12 @@ public class HealthDataService {
     }
 
     public List<HealthData> getRecordList(Long userId, int page, int size) {
+        if (page < 1) {
+            throw new IllegalArgumentException("页码必须大于等于 1");
+        }
+        if (size < 1 || size > 100) {
+            throw new IllegalArgumentException("每页数量必须在 1 到 100 之间");
+        }
         Page<HealthData> pageParam = new Page<>(page, size);
         LambdaQueryWrapper<HealthData> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(HealthData::getUserId, userId)
@@ -56,6 +62,7 @@ public class HealthDataService {
     }
 
     public Map<String, Object> getStats(Long userId, int days) {
+        validateDays(days);
         LocalDate startDate = LocalDate.now().minusDays(days - 1);
         List<HealthData> records = healthDataMapper.selectByDateRange(userId, startDate);
 
@@ -63,20 +70,26 @@ public class HealthDataService {
 
         // 计算平均值
         if (!records.isEmpty()) {
-            stats.put("avgSteps", (int) records.stream().mapToInt(r -> r.getSteps() != null ? r.getSteps() : 0).average().orElse(0));
-            stats.put("avgHeartRate", (int) records.stream().mapToInt(r -> r.getHeartRate() != null ? r.getHeartRate() : 0).average().orElse(0));
-            stats.put("avgSleepHours", records.stream()
-                    .map(r -> r.getSleepHours() != null ? r.getSleepHours() : BigDecimal.ZERO)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add)
-                    .divide(BigDecimal.valueOf(records.size()), 1, RoundingMode.HALF_UP));
-            stats.put("avgWeight", records.stream()
-                    .map(r -> r.getWeight() != null ? r.getWeight() : BigDecimal.ZERO)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add)
-                    .divide(BigDecimal.valueOf(records.size()), 1, RoundingMode.HALF_UP));
-            stats.put("avgBloodSugar", records.stream()
-                    .map(r -> r.getBloodSugar() != null ? r.getBloodSugar() : BigDecimal.ZERO)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add)
-                    .divide(BigDecimal.valueOf(records.size()), 1, RoundingMode.HALF_UP));
+            stats.put("avgSteps", averageInteger(records.stream()
+                    .map(HealthData::getSteps)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())));
+            stats.put("avgHeartRate", averageInteger(records.stream()
+                    .map(HealthData::getHeartRate)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())));
+            stats.put("avgSleepHours", averageDecimal(records.stream()
+                    .map(HealthData::getSleepHours)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())));
+            stats.put("avgWeight", averageDecimal(records.stream()
+                    .map(HealthData::getWeight)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())));
+            stats.put("avgBloodSugar", averageDecimal(records.stream()
+                    .map(HealthData::getBloodSugar)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())));
         } else {
             stats.put("avgSteps", 0);
             stats.put("avgHeartRate", 0);
@@ -128,6 +141,10 @@ public class HealthDataService {
      * 导出健康数据
      */
     public Map<String, Object> exportData(Long userId, int days, String format) {
+        validateDays(days);
+        if (!"csv".equalsIgnoreCase(format) && !"json".equalsIgnoreCase(format)) {
+            throw new IllegalArgumentException("导出格式仅支持 csv 或 json");
+        }
         LocalDate startDate = LocalDate.now().minusDays(days - 1);
         List<HealthData> records = healthDataMapper.selectByDateRange(userId, startDate);
 
@@ -159,6 +176,27 @@ public class HealthDataService {
         }
 
         return result;
+    }
+
+    private void validateDays(int days) {
+        if (days < 1 || days > 365) {
+            throw new IllegalArgumentException("统计天数必须在 1 到 365 之间");
+        }
+    }
+
+    private int averageInteger(List<Integer> values) {
+        return values.isEmpty()
+                ? 0
+                : (int) values.stream().mapToInt(Integer::intValue).average().orElse(0);
+    }
+
+    private BigDecimal averageDecimal(List<BigDecimal> values) {
+        if (values.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        return values.stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .divide(BigDecimal.valueOf(values.size()), 1, RoundingMode.HALF_UP);
     }
 }
 

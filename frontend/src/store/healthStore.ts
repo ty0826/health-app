@@ -79,7 +79,7 @@ export const useHealthStore = create<HealthState>((set) => ({
     await post('/health/record', data)
   },
 
-  updateRecord: async (id, data) => {
-    await post(`/health/record/${id}`, data)
+  updateRecord: async (_id, data) => {
+    await post('/health/record', data)
   },
 }))

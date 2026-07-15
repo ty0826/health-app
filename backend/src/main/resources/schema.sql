@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `health_data` (
   `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `deleted` TINYINT DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `idx_user_date` (`user_id`, `record_date`),
+  UNIQUE KEY `uk_user_date` (`user_id`, `record_date`),
   KEY `idx_record_date` (`record_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='健康数据表';
 
