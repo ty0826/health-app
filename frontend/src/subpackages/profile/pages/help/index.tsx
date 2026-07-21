@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import { get } from '../../../../utils/request'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 interface FaqItem {
@@ -35,7 +36,7 @@ export default function Help() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="帮助中心" className={styles.container} showBack>
       <View className={styles.header}>
         <Text className={styles.headerIcon}>❓</Text>
         <Text className={styles.headerTitle}>帮助中心</Text>
@@ -77,6 +78,6 @@ export default function Help() {
           📧 support@healthmanager.com
         </Text>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

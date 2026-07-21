@@ -1,0 +1,37 @@
+.navigationBar {
+  position: relative;
+  z-index: 20;
+  height: calc(88px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: $primary-color;
+  box-shadow: 0 2px 8px rgba(55, 48, 163, 0.18);
+}
+
+.title {
+  color: $text-white;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.backButton {
+  position: absolute;
+  left: 16px;
+  bottom: 0;
+  width: 72px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.backIcon {
+  color: $text-white;
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 300;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { View, Text } from '@tarojs/components'
 import { useHealthStore } from '../../store/healthStore'
+import PageScaffold from '../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const tabList = [
@@ -80,7 +81,7 @@ export default function Charts() {
   const currentMetric = metricList.find((m) => m.key === activeMetric)!
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="数据分析" className={styles.container}>
       {/* 时间筛选 */}
       <View className={styles.tabs}>
         {tabList.map((tab) => (
@@ -205,6 +206,6 @@ export default function Charts() {
           </View>
         </View>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

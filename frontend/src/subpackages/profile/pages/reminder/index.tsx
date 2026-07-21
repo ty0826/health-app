@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { View, Text, Switch, Picker } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { get, put } from '../../../../utils/request'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 interface ReminderItem {
@@ -71,16 +72,16 @@ export default function Reminder() {
 
   if (loading) {
     return (
-      <View className={styles.container}>
+      <PageScaffold title="提醒设置" className={styles.container} showBack>
         <View style={{ textAlign: 'center', padding: '100px 0' }}>
           <Text style={{ color: '#999' }}>加载中...</Text>
         </View>
-      </View>
+      </PageScaffold>
     )
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="提醒设置" className={styles.container} showBack>
       <View className={styles.tipCard}>
         <Text className={styles.tipIcon}>💡</Text>
         <Text className={styles.tipText}>
@@ -130,6 +131,6 @@ export default function Reminder() {
         </Text>
         <Text className={styles.noteText}>• 关闭提醒后将不再收到对应消息</Text>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

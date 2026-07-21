@@ -1,0 +1,5 @@
+{
+  "dart.flutterSdkPath": "../.tools/flutter",
+  "dart.flutterHotReloadOnSave": "all",
+  "dart.openDevTools": "flutter"
+}

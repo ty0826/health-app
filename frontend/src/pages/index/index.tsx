@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useUserStore } from '../../store/userStore'
 import { useHealthStore } from '../../store/healthStore'
+import PageScaffold from '../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const healthCards = [
@@ -33,14 +34,23 @@ const healthCards = [
 ]
 
 export default function Index() {
-  const { userInfo, fetchUserInfo } = useUserStore()
+  const { token, authReady, userInfo, fetchUserInfo } = useUserStore()
   const { todayRecord, fetchTodayRecord, fetchStats } = useHealthStore()
 
   useEffect(() => {
-    fetchUserInfo()
-    fetchTodayRecord()
-    fetchStats(7)
-  }, [])
+    if (!authReady) return
+
+    if (!token) {
+      Taro.reLaunch({ url: '/subpackages/login/pages/login/index' })
+      return
+    }
+
+    void Promise.allSettled([
+      fetchUserInfo(),
+      fetchTodayRecord(),
+      fetchStats(7),
+    ])
+  }, [authReady, token, fetchUserInfo, fetchTodayRecord, fetchStats])
 
   const getCardValue = (key: string) => {
     if (!todayRecord) return '--'
@@ -51,8 +61,10 @@ export default function Index() {
     Taro.navigateTo({ url: '/subpackages/record/pages/record/index' })
   }
 
+  if (!authReady || !token) return null
+
   return (
-    <View className={styles.container}>
+    <PageScaffold title="健康管家" className={styles.container}>
       {/* 头部区域 */}
       <View className={styles.header}>
         <View className={styles.headerContent}>
@@ -114,9 +126,9 @@ export default function Index() {
           <View className={styles.actionItem} onClick={goToRecord}>
             <View
               className={styles.actionIcon}
-              style={{ background: '#EEF2FF' }}
+              style={{ backgroundColor: '#EEF2FF' }}
             >
-              <Text style={{ fontSize: '32px' }}>📝</Text>
+              <Text className={styles.actionEmoji}>📝</Text>
             </View>
             <Text className={styles.actionText}>记录数据</Text>
           </View>
@@ -126,9 +138,9 @@ export default function Index() {
           >
             <View
               className={styles.actionIcon}
-              style={{ background: '#FEF3C7' }}
+              style={{ backgroundColor: '#FEF3C7' }}
             >
-              <Text style={{ fontSize: '32px' }}>📊</Text>
+              <Text className={styles.actionEmoji}>📊</Text>
             </View>
             <Text className={styles.actionText}>数据分析</Text>
           </View>
@@ -138,9 +150,9 @@ export default function Index() {
           >
             <View
               className={styles.actionIcon}
-              style={{ background: '#D1FAE5' }}
+              style={{ backgroundColor: '#D1FAE5' }}
             >
-              <Text style={{ fontSize: '32px' }}>🤖</Text>
+              <Text className={styles.actionEmoji}>🤖</Text>
             </View>
             <Text className={styles.actionText}>AI 助手</Text>
           </View> */}
@@ -150,9 +162,9 @@ export default function Index() {
           >
             <View
               className={styles.actionIcon}
-              style={{ background: '#FCE7F3' }}
+              style={{ backgroundColor: '#FCE7F3' }}
             >
-              <Text style={{ fontSize: '32px' }}>⚙️</Text>
+              <Text className={styles.actionEmoji}>⚙️</Text>
             </View>
             <Text className={styles.actionText}>我的设置</Text>
           </View>
@@ -201,6 +213,6 @@ export default function Index() {
           </View>
         </View>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

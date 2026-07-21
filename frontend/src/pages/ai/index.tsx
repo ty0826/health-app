@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { View, Text, Input, ScrollView } from '@tarojs/components'
 import { post } from '../../utils/request'
+import PageScaffold from '../../components/PageScaffold'
 import styles from './index.module.scss'
 
 interface Message {
@@ -90,7 +91,7 @@ export default function AiAssistant() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="AI 健康助手" className={styles.container}>
       {/* 消息列表 */}
       <ScrollView
         className={styles.messageList}
@@ -180,6 +181,6 @@ export default function AiAssistant() {
           <Text className={styles.sendIcon}>📤</Text>
         </View>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

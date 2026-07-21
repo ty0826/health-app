@@ -1,3 +1,9 @@
+const tabBarIconRoot =
+  process.env.TARO_ENV === 'h5' &&
+  process.env.NODE_ENV !== 'production'
+    ? '/assets/icons'
+    : 'assets/icons'
+
 export default defineAppConfig({
   lazyCodeLoading: 'requiredComponents',
   pages: [
@@ -21,26 +27,26 @@ export default defineAppConfig({
       {
         pagePath: 'pages/index/index',
         text: '首页',
-        iconPath: 'assets/icons/home.png',
-        selectedIconPath: 'assets/icons/home-active.png',
+        iconPath: `${tabBarIconRoot}/home.png`,
+        selectedIconPath: `${tabBarIconRoot}/home-active.png`,
       },
       {
         pagePath: 'pages/charts/index',
         text: '数据',
-        iconPath: 'assets/icons/chart.png',
-        selectedIconPath: 'assets/icons/chart-active.png',
+        iconPath: `${tabBarIconRoot}/chart.png`,
+        selectedIconPath: `${tabBarIconRoot}/chart-active.png`,
       },
       {
         pagePath: 'pages/ai/index',
         text: 'AI助手',
-        iconPath: 'assets/icons/ai.png',
-        selectedIconPath: 'assets/icons/ai-active.png',
+        iconPath: `${tabBarIconRoot}/ai.png`,
+        selectedIconPath: `${tabBarIconRoot}/ai-active.png`,
       },
       {
         pagePath: 'pages/profile/index',
         text: '我的',
-        iconPath: 'assets/icons/profile.png',
-        selectedIconPath: 'assets/icons/profile-active.png',
+        iconPath: `${tabBarIconRoot}/profile.png`,
+        selectedIconPath: `${tabBarIconRoot}/profile-active.png`,
       },
     ],
   },

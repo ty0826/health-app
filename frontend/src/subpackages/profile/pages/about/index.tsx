@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import { get } from '../../../../utils/request'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 interface AppInfoData {
@@ -52,7 +53,7 @@ export default function About() {
   ]
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="关于我们" className={styles.container} showBack>
       {/* Logo & 版本信息 */}
       <View className={styles.header}>
         <View className={styles.logoWrap}>
@@ -124,6 +125,6 @@ export default function About() {
         </Text>
         <Text className={styles.footerLink}>用户协议 | 隐私政策</Text>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

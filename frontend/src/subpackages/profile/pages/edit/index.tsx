@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { View, Text, Input, Picker } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useUserStore } from '../../../../store/userStore'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const genderOptions = ['未知', '男', '女']
@@ -60,7 +61,7 @@ export default function ProfileEdit() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="编辑资料" className={styles.container} showBack>
       <View className={styles.section}>
         <View className={styles.field}>
           <Text className={styles.label}>昵称</Text>
@@ -155,6 +156,6 @@ export default function ProfileEdit() {
           {saving ? '保存中...' : '保存修改'}
         </Text>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

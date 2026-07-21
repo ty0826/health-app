@@ -1,0 +1,13 @@
+.scaffold {
+  min-height: 100vh;
+  background: $bg-color;
+}
+
+.content {
+  min-height: 100vh;
+}
+
+.safeArea .content {
+  height: calc(100vh - 88px - env(safe-area-inset-top));
+  min-height: calc(100vh - 88px - env(safe-area-inset-top));
+}

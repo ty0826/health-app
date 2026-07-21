@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { View, Text, Input, Textarea } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useHealthStore } from '../../../../store/healthStore'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const moodList = [
@@ -108,7 +109,7 @@ export default function Record() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="健康数据录入" className={styles.container} showBack>
       <View className={styles.dateCard}>
         <Text className={styles.dateIcon}>📅</Text>
         <Text className={styles.dateText}>
@@ -182,6 +183,6 @@ export default function Record() {
           </Text>
         </View>
       </View>
-    </View>
+    </PageScaffold>
   )
 }

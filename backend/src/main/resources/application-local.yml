@@ -1,8 +1,10 @@
 spring:
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/health_manager?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:}
+#    username: ${DB_USERNAME:root}
+#    password: ${DB_PASSWORD:}
+    username: root
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 jwt:

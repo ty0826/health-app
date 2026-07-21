@@ -1,6 +1,12 @@
 # IDE and OS files
 .idea/
 .vscode/
+!.vscode/
+!.vscode/launch.json
+!.vscode/settings.json
+!mobile/.vscode/
+!mobile/.vscode/launch.json
+!mobile/.vscode/settings.json
 .DS_Store
 Thumbs.db
 
@@ -14,12 +20,28 @@ application-*.local.yml
 
 # Frontend dependencies and build output
 frontend/node_modules/
+frontend/.pnpm/
 frontend/dist/
 frontend/.taro/
 frontend/.swc/
-frontend/.rn_temp/
-frontend/.expo/
 frontend/pnpm-debug.log*
+
+# Native client build output and local configuration
+mobile/.dart_tool/
+mobile/.flutter-plugins*
+mobile/build/
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/key.properties
+mobile/android/app/*.jks
+mobile/android/app/*.keystore
+mobile/ios/Pods/
+mobile/ios/Flutter/ephemeral/
+mobile/ios/Runner.xcworkspace/xcuserdata/
+mobile/ios/Runner.xcodeproj/xcuserdata/
+mobile/ios/*.p12
+mobile/ios/*.mobileprovision
+mobile/ios/AuthKey_*.p8
 
 # Backend build output and logs
 backend/target/

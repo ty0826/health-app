@@ -1,4 +1,5 @@
 import { defineConfig } from '@tarojs/cli'
+import { resolveOutputRoot } from './output-root'
 
 export default defineConfig({
   projectName: 'health-manager',
@@ -11,14 +12,18 @@ export default defineConfig({
     828: 1.81 / 2,
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
+  outputRoot: resolveOutputRoot(process.env.TARO_ENV),
   plugins: ['@tarojs/plugin-framework-react', '@tarojs/plugin-html'],
-  defineConstants: {},
+  defineConstants: {
+    __TARO_APP_API_BASE_URL__: JSON.stringify(
+      process.env.TARO_APP_API_BASE_URL || '',
+    ),
+  },
   copy: {
     patterns: [
       {
         from: 'src/assets/icons',
-        to: 'assets/icons',
+        to: process.env.TARO_ENV === 'h5' ? 'static/images' : 'assets/icons',
       },
     ],
     options: {},
@@ -29,17 +34,12 @@ export default defineConfig({
     prebundle: { enable: false },
   },
   sass: {
-    resource: [
-      process.env.TARO_ENV === 'rn'
-        ? 'src/styles/variables.rn.scss'
-        : 'src/styles/variables.scss',
-      // Removed global NutUI style injection to prevent massive duplication
-    ],
+    resource: ['src/styles/variables.scss'],
   },
   mini: {
     // 启用智能提取分包依赖，减少主包体积
     optimizeMainPackage: {
-      enable: true,
+      enable: false,
     },
     postcss: {
       pxtransform: {

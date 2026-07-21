@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { View, Text, Picker } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { get } from '../../../../utils/request'
+import PageScaffold from '../../../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const formatOptions = ['CSV 表格', 'JSON 数据']
@@ -55,7 +56,7 @@ export default function DataExport() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="数据导出" className={styles.container} showBack>
       <View className={styles.header}>
         <Text className={styles.headerIcon}>📎</Text>
         <Text className={styles.headerTitle}>导出健康数据</Text>
@@ -124,6 +125,6 @@ export default function DataExport() {
           </Text>
         </View>
       )}
-    </View>
+    </PageScaffold>
   )
 }

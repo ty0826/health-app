@@ -103,12 +103,7 @@ export default function Login() {
           type="primary"
           loading={loading}
           onClick={handleSubmit}
-          style={{
-            marginTop: '40px',
-            height: '60px',
-            fontSize: '25px',
-            width: '100%'
-          }}
+          className={styles.submitBtn}
         >
           {isLogin ? '登 录' : '注 册'}
         </Button>

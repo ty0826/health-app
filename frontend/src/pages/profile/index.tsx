@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useUserStore } from '../../store/userStore'
+import PageScaffold from '../../components/PageScaffold'
 import styles from './index.module.scss'
 
 const menuItems = [
@@ -75,7 +76,7 @@ export default function Profile() {
   }
 
   return (
-    <View className={styles.container}>
+    <PageScaffold title="个人中心" className={styles.container}>
       {/* 用户信息卡片 */}
       <View className={styles.profileCard}>
         <View
@@ -165,6 +166,6 @@ export default function Profile() {
       <View className={styles.version}>
         <Text className={styles.versionText}>v1.0.0</Text>
       </View>
-    </View>
+    </PageScaffold>
   )
 }
